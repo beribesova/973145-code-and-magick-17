@@ -115,7 +115,7 @@ showUserDialog(userDialog);
 showSimilarListElement(userDialog);
 createWizards(wizardTemplate, userDialog, dataWizards);
 
-if (setup.classList[2] !== 'hidden') {
+if (!setup.classList.contains('hidden')) {
   document.addEventListener('keydown', onPopupEscPress);
 }
 
