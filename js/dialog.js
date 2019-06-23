@@ -11,7 +11,16 @@
 
   var defaultY = setup.style.top;
   var defaultX = setup.style.left;
-  dialogHandler.addEventListener('mousedown', function (evt) {
+
+  var addUploadAvatarListener = function () {
+    var onClickPreventDefault = function (evtUp) {
+      evtUp.preventDefault();
+      dialogHandler.removeEventListener('click', onClickPreventDefault);
+    };
+    dialogHandler.addEventListener('click', onClickPreventDefault);
+  };
+
+  var draggePopup = function (evt) {
     evt.preventDefault();
 
     var startCoords = {
@@ -47,18 +56,16 @@
       document.removeEventListener('mouseup', onMouseUp);
 
       if (dragged) {
-        var onClickPreventDefault = function (evtDrag) {
-          evtDrag.preventDefault();
-          dialogHandler.removeEventListener('click', onClickPreventDefault);
-        };
-        dialogHandler.addEventListener('click', onClickPreventDefault);
+        addUploadAvatarListener(upEvt);
       }
 
     };
 
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
-  });
+  };
+
+  dialogHandler.addEventListener('mousedown', draggePopup);
 
   shopElement.addEventListener('dragstart', function (evt) {
     if (evt.target.tagName === 'IMG') {
