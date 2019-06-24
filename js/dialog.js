@@ -1,7 +1,6 @@
 'use strict';
 
 (function () {
-
   var setup = document.querySelector('.setup');
   var dialogHandler = setup.querySelector('.upload');
   var shopElement = document.querySelector('.setup-artifacts-shop');
@@ -93,5 +92,4 @@
     setup.style.top = defaultY;
     setup.style.left = defaultX;
   });
-
 })();
